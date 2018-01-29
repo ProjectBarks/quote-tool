@@ -34,9 +34,9 @@ def get_products(api_url='https://api.gdax.com', timeout=30) -> Dict[str, Dict]:
             'display_name': data['display_name'],
             'base_currency': data['base_currency'],
             'quote_currency': data['quote_currency'],
-            'base_min_size': float(data['base_min_size']),
-            'base_max_size': float(data['base_max_size']),
-            'quote_increment': float(data['quote_increment'])
+            'base_min_size': Decimal(data['base_min_size']),
+            'base_max_size': Decimal(data['base_max_size']),
+            'quote_increment': Decimal(data['quote_increment'])
         }
 
     return {item['id']: fix_data(item) for item in r.json()}

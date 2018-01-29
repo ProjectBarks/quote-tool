@@ -63,11 +63,13 @@ async def on_get_quote(request):
     # Find the scalar which is used to convert floats to the nearest integer for weighting
     # Precision is used in exporting result with proper number of decimals
     if inverted:
+        # All cryptos seem to be fixed at 8 decimals
         precision = 8
-        amount_scalar = properties['quote_increment']
+        amount_scalar = float(properties['quote_increment'])
     else:
-        precision = 2
-        amount_scalar = properties['base_min_size'] * properties['quote_increment']
+        # get base currency decimals
+        precision = abs(properties['quote_increment'].as_tuple().exponent)
+        amount_scalar = float(properties['base_min_size'] * properties['quote_increment'])
     # Go through converting prices and sizes to weights and values
     for (price, size) in data:
         exchange_rate = (size * price)
