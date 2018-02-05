@@ -1,0 +1,7 @@
+{
+  "name": "Coinbase Quote Tool",
+  "description": "A web service that provides quotes for digital currency trades using data from the GDAX order-book.",
+  "image": "heroku/python",
+  "repository": "https://github.com/ProjectBarks/quote-tool",
+  "keywords": ["python", "sanic", "gdax"]
+}
